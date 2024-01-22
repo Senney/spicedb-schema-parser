@@ -1,0 +1,7 @@
+{
+    "extends": "@tsconfig/node20",
+    "compilerOptions": {
+        "types": ["vitest/globals"]
+    },
+    "include": ["./src/**/*.ts", "./test/**/*.test.ts"]
+}
