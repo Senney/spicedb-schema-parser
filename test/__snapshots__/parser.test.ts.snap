@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SpiceDBSchemaParser > parse > should match snapshot 1`] = `
+[
+  DefinitionStatement {
+    "block": BlockStatement {
+      "statements": [],
+    },
+    "resourceName": "user",
+  },
+]
+`;

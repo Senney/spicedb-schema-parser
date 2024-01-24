@@ -99,7 +99,10 @@ class SpiceDBSchemaLexer {
         return this.dive();
       case '/':
         if (this.match('*')) {
-          while (!(this.advance() === '*' && this.peek() === '/') && !this.isAtEnd()) {
+          while (
+            !(this.advance() === '*' && this.peek() === '/') &&
+            !this.isAtEnd()
+          ) {
             let a = this.peek();
           }
           this.advance();
@@ -117,6 +120,18 @@ class SpiceDBSchemaLexer {
     }
 
     throw new LexerError(this.line, this.start, `Unrecognized token "${c}".`);
+  }
+
+  public scanAll(): Token[] {
+    const tokens = [];
+    for (
+      let token = this.scan();
+      token.token !== TokenType.EOF;
+      token = this.scan()
+    ) {
+      tokens.push(token);
+    }
+    return tokens;
   }
 
   private isAtEnd(): boolean {
