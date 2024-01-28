@@ -8,5 +8,67 @@ exports[`SpiceDBSchemaParser > parse > should match snapshot 1`] = `
     },
     "resourceName": "user",
   },
+  DefinitionStatement {
+    "block": BlockStatement {
+      "statements": [
+        RelationStatement {
+          "relationDefinition": RelationDefinitionExpression {
+            "expression": IdentifierExpression {
+              "relation": Token {
+                "lexeme": "user",
+                "line": 6,
+                "literal": "user",
+                "token": 0,
+              },
+            },
+          },
+          "relationName": "member",
+        },
+      ],
+    },
+    "resourceName": "group",
+  },
+  DefinitionStatement {
+    "block": BlockStatement {
+      "statements": [
+        RelationStatement {
+          "relationDefinition": RelationDefinitionExpression {
+            "expression": BinaryExpression {
+              "lhs": IdentifierExpression {
+                "relation": Token {
+                  "lexeme": "user",
+                  "line": 10,
+                  "literal": "user",
+                  "token": 0,
+                },
+              },
+              "operator": Token {
+                "lexeme": "|",
+                "line": 10,
+                "literal": null,
+                "token": 9,
+              },
+              "rhs": MembershipIdentifierExpression {
+                "definition": Token {
+                  "lexeme": "group",
+                  "line": 10,
+                  "literal": "group",
+                  "token": 0,
+                },
+                "relation": Token {
+                  "lexeme": "member",
+                  "line": 10,
+                  "literal": "member",
+                  "token": 0,
+                },
+              },
+            },
+          },
+          "relationName": "foo",
+        },
+      ],
+    },
+    "resourceName": "document",
+  },
 ]
 `;

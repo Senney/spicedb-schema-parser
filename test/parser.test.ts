@@ -7,8 +7,12 @@ describe('SpiceDBSchemaParser', () => {
     /** user represents a user */
     definition user {}
 
+    definition group {
+      relation member: user
+    }
+
     definition document {
-      relation foo:
+      relation foo: user | group#member
     }
     `;
 

@@ -37,7 +37,7 @@ class PermissionStatement extends Statement {
 }
 
 class RelationDefinitionExpression extends Expression {
-  constructor() {
+  constructor(public expression: Expression) {
     super();
   }
 }
@@ -64,15 +64,32 @@ class GroupingExpression extends Expression {
   }
 }
 
+class IdentifierExpression extends Expression {
+  constructor(public relation: Token) {
+    super();
+  }
+}
+
+class MembershipIdentifierExpression extends Expression {
+  constructor(
+    public definition: Token,
+    public relation: Token,
+  ) {
+    super();
+  }
+}
+
 export {
   BinaryExpression,
   BlockStatement,
   DefinitionStatement,
   Expression,
   GroupingExpression,
+  IdentifierExpression,
+  MembershipIdentifierExpression,
   PermissionDefinitionExpression,
   PermissionStatement,
   RelationDefinitionExpression,
   RelationStatement,
   Statement,
-}
+};

@@ -1,7 +1,10 @@
 import {
+  BinaryExpression,
   BlockStatement,
   DefinitionStatement,
   Expression,
+  IdentifierExpression,
+  MembershipIdentifierExpression,
   PermissionDefinitionExpression,
   PermissionStatement,
   RelationDefinitionExpression,
@@ -60,7 +63,7 @@ class SpiceDBSchemaParser {
 
     return new RelationStatement(
       identifierToken.lexeme,
-      new RelationDefinitionExpression(),
+      new RelationDefinitionExpression(this.relationDefinitionExpression()),
     );
   }
 
@@ -74,11 +77,32 @@ class SpiceDBSchemaParser {
   }
 
   private relationDefinitionExpression(): Expression {
-    
+    return this.relationOr();
   }
 
   private relationOr(): Expression {
-    
+    const lhs = this.relationIdentifier();
+
+    if (this.match(TokenType.OR)) {
+      const operator = this.previous();
+      const rhs = this.relationDefinitionExpression();
+
+      return new BinaryExpression(lhs, operator, rhs);
+    }
+
+    return lhs;
+  }
+
+  private relationIdentifier(): Expression {
+    const symbol = this.consume(TokenType.IDENTIFIER, 'identifier');
+
+    if (this.match(TokenType.MEMBER)) {
+      const membership = this.consume(TokenType.IDENTIFIER, 'identifier');
+
+      return new MembershipIdentifierExpression(symbol, membership);
+    }
+
+    return new IdentifierExpression(symbol);
   }
 
   private match(...tokenTypes: TokenType[]): boolean {
