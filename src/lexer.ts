@@ -40,6 +40,7 @@ export class Token {
     public readonly lexeme: string,
     public readonly literal: string | null,
     public readonly line: number,
+    public readonly col: number,
   ) {}
 }
 
@@ -54,7 +55,7 @@ class SpiceDBSchemaLexer {
 
   public scan(): Token {
     if (this.isAtEnd()) {
-      return new Token(TokenType.EOF, '', null, this.line);
+      return new Token(TokenType.EOF, '', null, this.line, this.current);
     }
 
     const c = this.advance();
@@ -164,7 +165,7 @@ class SpiceDBSchemaLexer {
     const value = this.source.slice(this.start, this.current);
     const tokenType = spiceDBKeywordLexemes[value] ?? TokenType.IDENTIFIER;
 
-    return new Token(tokenType, value, value, this.line);
+    return new Token(tokenType, value, value, this.line, this.current);
   }
 
   private emit(token: Token): Token {
@@ -185,6 +186,7 @@ class SpiceDBSchemaLexer {
       this.source.slice(this.start, this.current),
       null,
       this.line,
+      this.current,
     );
   }
 }

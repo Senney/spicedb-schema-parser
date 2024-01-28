@@ -120,7 +120,7 @@ class SpiceDBSchemaParser {
     if (!this.check(tokenType)) {
       throw new SyntaxError(
         this.peek().line,
-        0,
+        this.peek().col,
         `Expected "${expected}", received "${this.peek().lexeme}"`,
       );
     }

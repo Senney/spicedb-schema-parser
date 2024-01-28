@@ -15,6 +15,7 @@ exports[`SpiceDBSchemaParser > parse > should match snapshot 1`] = `
           "relationDefinition": RelationDefinitionExpression {
             "expression": IdentifierExpression {
               "relation": Token {
+                "col": 109,
                 "lexeme": "user",
                 "line": 6,
                 "literal": "user",
@@ -36,6 +37,7 @@ exports[`SpiceDBSchemaParser > parse > should match snapshot 1`] = `
             "expression": BinaryExpression {
               "lhs": IdentifierExpression {
                 "relation": Token {
+                  "col": 167,
                   "lexeme": "user",
                   "line": 10,
                   "literal": "user",
@@ -43,6 +45,7 @@ exports[`SpiceDBSchemaParser > parse > should match snapshot 1`] = `
                 },
               },
               "operator": Token {
+                "col": 169,
                 "lexeme": "|",
                 "line": 10,
                 "literal": null,
@@ -50,12 +53,14 @@ exports[`SpiceDBSchemaParser > parse > should match snapshot 1`] = `
               },
               "rhs": MembershipIdentifierExpression {
                 "definition": Token {
+                  "col": 175,
                   "lexeme": "group",
                   "line": 10,
                   "literal": "group",
                   "token": 0,
                 },
                 "relation": Token {
+                  "col": 182,
                   "lexeme": "member",
                   "line": 10,
                   "literal": "member",
